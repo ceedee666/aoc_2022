@@ -12,6 +12,7 @@ debugpy = "*"
 pre-commit = "*"
 black = "*"
 neovim = "*"
+pyright = "*"
 
 [requires]
 python_version = "3.11"
