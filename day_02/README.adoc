@@ -1,4 +1,4 @@
-== Day ??
+== Day 02
 
 This solution is written in python.
 
@@ -8,7 +8,7 @@ The following libraries are used to implement the solution::
 
 === Main idea
 
-The main idea of this solution is ...
+The main idea of this solution is to use dicts represent the games.
 
 
 === What did I learn
@@ -16,4 +16,4 @@ The main idea of this solution is ...
 === How to run
 
 Run using:
-`$ python day_0.py --help`
+`$ python day_02.py --help`
