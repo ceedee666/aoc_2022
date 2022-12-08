@@ -1,4 +1,4 @@
-== Day 07
+== Day 08
 
 This solution is written in python.
 
@@ -9,16 +9,17 @@ The following libraries are used to implement the solution:
 
 === Main idea
 
-The main idea of this solution is to build a tree from the commands. The tree is implemented using
-dataclasses. The dataclass contains recursive methods to collect all children and to calculate
-the total size.
+I got a little stuck with the first part today by trying to solve this puzzle using just list comprehension.
+I worked on rows and cols separately and tried to combine the results by just summing the visible trees in both.
+However, this does not work as it would count some trees multiple times.
 
+Finally, I changed my approach an iterated through the grid using `range`s.
 
 === What did I learn
 
-I learned a lot about dataclasses, typing and type hints, and enums.
-
+If you want to use a `range` to count down the indices of a list be sure
+to use `range(start, -1, -1)`. Otherwise some of the elements might be missing.
 === How to run
 
 Run using:
-`$ python day_07.py --help`
+`$ python day_08.py --help`
