@@ -1,0 +1,93 @@
+import ast
+from itertools import chain
+from pathlib import Path
+
+import typer
+
+app = typer.Typer()
+
+
+def read_input_file(input_file_path: str) -> list:
+    p = Path(input_file_path)
+
+    with p.open() as f:
+        lines = f.readlines()
+
+    return [l.strip() for l in lines]
+
+
+def parse_input(lines: list[str]) -> list[list]:
+    return [
+        [ast.literal_eval(lines[i]), ast.literal_eval(lines[i + 1])]
+        for i in range(0, len(lines), 3)
+    ]
+
+
+def validate_pair(pair):
+    left, right = pair
+    if isinstance(left, list) and isinstance(right, list):
+        for pair in zip(left, right):
+            result = validate_pair(pair)
+            if result in [True, False]:
+                return result
+
+        if len(left) < len(right):
+            return True
+        elif len(left) > len(right):
+            return False
+        else:
+            return None
+
+    elif isinstance(left, int) and isinstance(right, int):
+        if left < right:
+            return True
+        if left > right:
+            return False
+        else:
+            return None
+
+    elif isinstance(left, int) and isinstance(right, list):
+        return validate_pair([[left], right])
+
+    elif isinstance(left, list) and isinstance(right, int):
+        return validate_pair([left, [right]])
+
+
+def validate_pairs(pairs):
+    return list(map(validate_pair, pairs))
+
+
+def solve_part_1(input_lines: list[str]) -> int:
+    pairs = parse_input(input_lines)
+    in_order = validate_pairs(pairs)
+    return sum(map(lambda e: e[0] + 1 if e[1] else 0, enumerate(in_order)))
+
+
+def solve_part_2(input_lines):
+    pairs = parse_input(input_lines)
+    packets = [[[6]]] + itertools.chain(*pairs)
+    ordered_packets = [[[2]]]
+
+    for p in packets:
+        for i in range(len(ordered_packets)):
+            if validate_pair(p, ordered_packets[i]):
+                ordered_packets = ordered_packets[:i] + [p] + ordered_packets[i:]
+
+    in_order = validate_pairs(pairs)
+    return sum(map(lambda e: e[0] + 1 if e[1] else 0, enumerate(in_order)))
+
+
+@app.command()
+def part1(input_file: str):
+    result = solve_part_1(read_input_file(input_file))
+    print(f"The sum of the indices of the pairs in correct order is {result}")
+
+
+@app.command()
+def part2(input_file: str):
+    steps = solve_part_2(read_input_file(input_file))
+    print(f"The ...")
+
+
+if __name__ == "__main__":
+    app()
