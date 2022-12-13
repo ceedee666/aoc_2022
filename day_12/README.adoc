@@ -1,4 +1,4 @@
-== Day 11
+== Day 12
 
 This solution is written in python.
 
@@ -21,4 +21,4 @@ that I need to take the hight into account.
 === How to run
 
 Run using:
-`$ python day_11.py --help`
+`$ python day_12.py --help`
