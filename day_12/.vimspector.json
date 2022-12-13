@@ -35,7 +35,7 @@
         "protocol": "auto",
         "stopOnEntry": false,
         "console": "integratedTerminal",
-        "program": "test_day_13.py",
+        "program": "test_day_12.py",
         "cwd": "${fileDirname}"
       }
     }
