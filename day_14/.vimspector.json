@@ -1,0 +1,43 @@
+{
+  "configurations": {
+    "Part 1": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "type": "python",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "${file}",
+        "cwd": "${fileDirname}",
+        "args": ["part1", "input.txt"]
+      }
+    },
+    
+    "Part 2": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "type": "python",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "${file}",
+        "cwd": "${fileDirname}",
+        "args": ["part2", "input.txt"]
+      }
+    },
+    "Unit Test": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "type": "python",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "test_day_14.py",
+        "cwd": "${fileDirname}"
+      }
+    }
+  }
+}
