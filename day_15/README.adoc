@@ -15,6 +15,7 @@ a row are covered by the sensors.
 
 === What did I learn
 
+Regex can be really useful to parse files ;)
 
 === How to run
 
