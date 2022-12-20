@@ -54,7 +54,7 @@ def add_floor(cave: dict[tuple[int, int], str]) -> dict[tuple[int, int], str]:
 
 
 def simulate_sand(
-    cave: dict[tuple[int, int], str], start=(500, 0)
+    cave: dict[tuple[int, int], str], start=(500, 0), visualize=False
 ) -> dict[tuple[int, int], str]:
 
     stop_simu = False
@@ -84,31 +84,43 @@ def simulate_sand(
                 stop_step = True
                 stop_simu = True
 
+        if visualize:
+            for j in range(0, max_y + 1):
+                line = ""
+                for i in range(min_x, max_x + 1):
+                    if (i, j) in cave:
+                        if cave[(i, j)] == "R":
+                            line += "#"
+                        else:
+                            line += "*"
+                    else:
+                        line += " "
+                print(line, flush=True)
     return cave
 
 
-def solve_part_1(input_lines: list[str]) -> int:
+def solve_part_1(input_lines: list[str], visualize=False) -> int:
     cave = parse_input(input_lines)
-    cave = simulate_sand(cave)
+    cave = simulate_sand(cave, visualize=visualize)
     return sum([1 if cave[k] == "S" else 0 for k in cave])
 
 
-def solve_part_2(input_lines):
+def solve_part_2(input_lines: list[str], visualize=False) -> int:
     cave = parse_input(input_lines)
     cave = add_floor(cave)
-    cave = simulate_sand(cave)
+    cave = simulate_sand(cave, visualize=visualize)
     return sum([1 if cave[k] == "S" else 0 for k in cave])
 
 
 @app.command()
-def part1(input_file: str):
-    result = solve_part_1(read_input_file(input_file))
+def part1(input_file: str, visualize=False):
+    result = solve_part_1(read_input_file(input_file), visualize=visualize)
     print(f"{result} units of sand come to a rest.")
 
 
 @app.command()
-def part2(input_file: str):
-    result = solve_part_2(read_input_file(input_file))
+def part2(input_file: str, visualize=False):
+    result = solve_part_2(read_input_file(input_file), visualize=visualize)
     print(f"{result} units of sand come to a rest.")
 
 

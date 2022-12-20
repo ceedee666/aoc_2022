@@ -1,4 +1,4 @@
-== Day ??
+== Day 18
 
 This solution is written in python.
 
@@ -9,12 +9,15 @@ The following libraries are used to implement the solution:
 
 === Main idea
 
-The main idea of this solution is ...
-
+First I just counted cubes. For the second part I had to change my approach. I implemented
+a flooding algorithm to find the outside. After that I calculated all neighbours of the cubes and
+counted only the ones visible from the outside.
 
 === What did I learn
+
+I extended my knowledge of list comprehension. Such a cool feature!
 
 === How to run
 
 Run using:
-`$ python day_0.py --help`
+`$ python day_18.py --help`
