@@ -1,0 +1,97 @@
+import re
+from operator import add, mul, sub, truediv
+from pathlib import Path
+
+import typer
+
+app = typer.Typer()
+
+
+def read_input_file(input_file_path) -> list[str]:
+    p = Path(input_file_path)
+
+    with p.open() as f:
+        lines = f.readlines()
+    return [l.strip("\n") for l in lines]
+
+
+def parse_input(lines: list) -> tuple[dict, list]:
+    board = {}
+    for i, l in enumerate(lines[:-1]):
+        for j, c in enumerate(l):
+            coord = (i, j)
+            if c in "#.":
+                board[coord] = c
+
+    moves_re = re.compile(r"\d+|L|R")
+    moves = moves_re.findall(lines[-1])
+    moves = list(map(lambda t: (int(t[0]), t[1]), zip(moves[::2], moves[1::2])))
+
+    return board, moves
+
+
+def first_in_row(row, board):
+    return min(map(lambda c: c[1], filter(lambda c: c[0] == row, board)))
+
+
+def last_in_row(row, board):
+    return max(map(lambda c: c[1], filter(lambda c: c[0] == row, board)))
+
+
+def first_in_col(col, board):
+    return min(map(lambda c: c[0], filter(lambda c: c[1] == col, board)))
+
+
+def last_in_col(col, board):
+    return min(map(lambda c: c[0], filter(lambda c: c[1] == col, board)))
+
+
+def move(steps, pos, board):
+    r, c, direction = pos
+
+    match direction:
+        case "R":
+            r_inc = 0
+            c_inc = 1
+
+        case "L":
+            r_inc = 0
+            c_inc = -1
+
+        case "U":
+            r_inc = -1
+            c_inc = 0
+        case "D":
+            r_inc = 1
+            c_inc = 0
+
+
+def solve_part_1(lines: list) -> int:
+    board, moves = parse_input(lines)
+    col = first_in_row(0, board)
+    pos = (0, col, "R")
+
+    for steps, direction in moves:
+        pos = move(steps, pos, board)
+        pos = turn(direction, pos, board)
+
+    return 0
+
+
+def solve_part_2(lines: list) -> int:
+    return 0
+
+
+@app.command()
+def part1(input_file: str):
+    lines = read_input_file(input_file)
+    print(solve_part_1(lines))
+
+
+@app.command()
+def part2(input_file: str):
+    yield
+
+
+if __name__ == "__main__":
+    app()
