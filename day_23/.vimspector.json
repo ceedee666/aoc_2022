@@ -10,10 +10,23 @@
         "console": "integratedTerminal",
         "program": "${file}",
         "cwd": "${fileDirname}",
-        "args": ["part1", "input.txt"]
+        "args": [ "part1", "input.txt"]
       }
     },
-
+    
+    "Part 2": {
+      "adapter": "debugpy",
+      "configuration": {
+        "request": "launch",
+        "type": "python",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "${file}",
+        "cwd": "${fileDirname}",
+        "args": [ "part2", "input.txt"]
+      }
+    },
     "Unit Test": {
       "adapter": "debugpy",
       "configuration": {
@@ -22,7 +35,7 @@
         "protocol": "auto",
         "stopOnEntry": false,
         "console": "integratedTerminal",
-        "program": "test_day_0..py",
+        "program": "test_day_23.py",
         "cwd": "${fileDirname}"
       }
     }
