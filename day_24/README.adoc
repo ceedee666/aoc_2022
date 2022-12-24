@@ -1,4 +1,4 @@
-== Day 22
+== Day 24
 
 This solution is written in python.
 
@@ -9,14 +9,23 @@ The following libraries are used to implement the solution:
 
 === Main idea
 
-Only solved part one today.
+Basically use sets to keep track of the state. I very useful ideas is to move
+all positions -1 in x and y direction. This enables much simpler calculations.
+The next positions of the blizzards can then, e.g. simply be calculated
+using a modulo operation.
 
 
 === What did I learn
 
-When zipping two lists make sure they are of equal lenght.
+It is not necessary to create a `list` wen using `max`. The following is possible as
+well. This approach creates a generator. Have to read some more details on generators I guess.
+
+[source,python]
+----
+max_x = max(x for x, _ in walls)
+----
 
 === How to run
 
 Run using:
-`$ python day_22.py --help`
+`$ python day_24.py --help`
